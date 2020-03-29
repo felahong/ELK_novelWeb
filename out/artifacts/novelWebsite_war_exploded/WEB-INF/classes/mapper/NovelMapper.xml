@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sif.mapper.NovelMapper">
+  <resultMap id="BaseResultMap" type="com.sif.pojo.Novel">
+    <id column="nid" jdbcType="VARCHAR" property="nid" />
+    <result column="nname" jdbcType="VARCHAR" property="nname" />
+    <result column="nauthor" jdbcType="VARCHAR" property="nauthor" />
+    <result column="nstatic" jdbcType="INTEGER" property="nstatic" />
+    <result column="nclass" jdbcType="INTEGER" property="nclass" />
+    <result column="nlabel" jdbcType="VARCHAR" property="nlabel" />
+    <result column="nlogo" jdbcType="VARCHAR" property="nlogo" />
+    <result column="nhot" jdbcType="INTEGER" property="nhot" />
+    <result column="nintro" jdbcType="VARCHAR" property="nintro" />
+    <result column="ncreatetime" jdbcType="TIMESTAMP" property="ncreatetime" />
+    <result column="lastchapter" jdbcType="INTEGER" property="lastchapter" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    nid, nname, nauthor, nstatic, nclass, nlabel, nlogo, nhot, nintro, ncreatetime, lastchapter
+  </sql>
+  <!--根据作者的名字查询小说-->
+  <!--List<Novel> selectNovelsByAuthor(String username);-->
+  <select id="selectNovelsByAuthor" parameterType="com.sif.pojo.NovelExample" resultMap="BaseResultMap">
+      select
+      <include refid="Base_Column_List" />
+      from novel where nauthor = #{nauthor,jdbcType=VARCHAR}
+  </select>
+
+  <!--根据小说id更新小说-->
+  <!--void updateNovelByNid(String nid);-->
+  <update id="updateNovelByNid">
+    update novel
+    set lastchapter = lastchapter+1
+    where nid = #{nid,jdbcType=VARCHAR}
+  </update>
+
+
+  <!--List<Novel> selectAllNovel();-->
+  <select id="selectAllNovel" resultType="com.sif.pojo.Novel">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM novel
+  </select>
+
+  <select id="selectByExample" parameterType="com.sif.pojo.NovelExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from novel
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from novel
+    where nid = #{nid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from novel
+    where nid = #{nid,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.sif.pojo.NovelExample">
+    delete from novel
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.sif.pojo.Novel">
+    insert into novel (nid, nname, nauthor, 
+      nstatic, nclass, nlabel, 
+      nlogo, nhot, nintro, 
+      ncreatetime, lastchapter)
+    values (#{nid,jdbcType=VARCHAR}, #{nname,jdbcType=VARCHAR}, #{nauthor,jdbcType=VARCHAR}, 
+      #{nstatic,jdbcType=INTEGER}, #{nclass,jdbcType=INTEGER}, #{nlabel,jdbcType=VARCHAR}, 
+      #{nlogo,jdbcType=VARCHAR}, #{nhot,jdbcType=INTEGER}, #{nintro,jdbcType=VARCHAR}, 
+      #{ncreatetime,jdbcType=TIMESTAMP}, #{lastchapter,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sif.pojo.Novel">
+    insert into novel
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="nid != null">
+        nid,
+      </if>
+      <if test="nname != null">
+        nname,
+      </if>
+      <if test="nauthor != null">
+        nauthor,
+      </if>
+      <if test="nstatic != null">
+        nstatic,
+      </if>
+      <if test="nclass != null">
+        nclass,
+      </if>
+      <if test="nlabel != null">
+        nlabel,
+      </if>
+      <if test="nlogo != null">
+        nlogo,
+      </if>
+      <if test="nhot != null">
+        nhot,
+      </if>
+      <if test="nintro != null">
+        nintro,
+      </if>
+      <if test="ncreatetime != null">
+        ncreatetime,
+      </if>
+      <if test="lastchapter != null">
+        lastchapter,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="nid != null">
+        #{nid,jdbcType=VARCHAR},
+      </if>
+      <if test="nname != null">
+        #{nname,jdbcType=VARCHAR},
+      </if>
+      <if test="nauthor != null">
+        #{nauthor,jdbcType=VARCHAR},
+      </if>
+      <if test="nstatic != null">
+        #{nstatic,jdbcType=INTEGER},
+      </if>
+      <if test="nclass != null">
+        #{nclass,jdbcType=INTEGER},
+      </if>
+      <if test="nlabel != null">
+        #{nlabel,jdbcType=VARCHAR},
+      </if>
+      <if test="nlogo != null">
+        #{nlogo,jdbcType=VARCHAR},
+      </if>
+      <if test="nhot != null">
+        #{nhot,jdbcType=INTEGER},
+      </if>
+      <if test="nintro != null">
+        #{nintro,jdbcType=VARCHAR},
+      </if>
+      <if test="ncreatetime != null">
+        #{ncreatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastchapter != null">
+        #{lastchapter,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.sif.pojo.NovelExample" resultType="java.lang.Long">
+    select count(*) from novel
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update novel
+    <set>
+      <if test="record.nid != null">
+        nid = #{record.nid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nname != null">
+        nname = #{record.nname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nauthor != null">
+        nauthor = #{record.nauthor,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nstatic != null">
+        nstatic = #{record.nstatic,jdbcType=INTEGER},
+      </if>
+      <if test="record.nclass != null">
+        nclass = #{record.nclass,jdbcType=INTEGER},
+      </if>
+      <if test="record.nlabel != null">
+        nlabel = #{record.nlabel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nlogo != null">
+        nlogo = #{record.nlogo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nhot != null">
+        nhot = #{record.nhot,jdbcType=INTEGER},
+      </if>
+      <if test="record.nintro != null">
+        nintro = #{record.nintro,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ncreatetime != null">
+        ncreatetime = #{record.ncreatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.lastchapter != null">
+        lastchapter = #{record.lastchapter,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update novel
+    set nid = #{record.nid,jdbcType=VARCHAR},
+      nname = #{record.nname,jdbcType=VARCHAR},
+      nauthor = #{record.nauthor,jdbcType=VARCHAR},
+      nstatic = #{record.nstatic,jdbcType=INTEGER},
+      nclass = #{record.nclass,jdbcType=INTEGER},
+      nlabel = #{record.nlabel,jdbcType=VARCHAR},
+      nlogo = #{record.nlogo,jdbcType=VARCHAR},
+      nhot = #{record.nhot,jdbcType=INTEGER},
+      nintro = #{record.nintro,jdbcType=VARCHAR},
+      ncreatetime = #{record.ncreatetime,jdbcType=TIMESTAMP},
+      lastchapter = #{record.lastchapter,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sif.pojo.Novel">
+    update novel
+    <set>
+      <if test="nname != null">
+        nname = #{nname,jdbcType=VARCHAR},
+      </if>
+      <if test="nauthor != null">
+        nauthor = #{nauthor,jdbcType=VARCHAR},
+      </if>
+      <if test="nstatic != null">
+        nstatic = #{nstatic,jdbcType=INTEGER},
+      </if>
+      <if test="nclass != null">
+        nclass = #{nclass,jdbcType=INTEGER},
+      </if>
+      <if test="nlabel != null">
+        nlabel = #{nlabel,jdbcType=VARCHAR},
+      </if>
+      <if test="nlogo != null">
+        nlogo = #{nlogo,jdbcType=VARCHAR},
+      </if>
+      <if test="nhot != null">
+        nhot = #{nhot,jdbcType=INTEGER},
+      </if>
+      <if test="nintro != null">
+        nintro = #{nintro,jdbcType=VARCHAR},
+      </if>
+      <if test="ncreatetime != null">
+        ncreatetime = #{ncreatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastchapter != null">
+        lastchapter = #{lastchapter,jdbcType=INTEGER},
+      </if>
+    </set>
+    where nid = #{nid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sif.pojo.Novel">
+    update novel
+    set nname = #{nname,jdbcType=VARCHAR},
+      nauthor = #{nauthor,jdbcType=VARCHAR},
+      nstatic = #{nstatic,jdbcType=INTEGER},
+      nclass = #{nclass,jdbcType=INTEGER},
+      nlabel = #{nlabel,jdbcType=VARCHAR},
+      nlogo = #{nlogo,jdbcType=VARCHAR},
+      nhot = #{nhot,jdbcType=INTEGER},
+      nintro = #{nintro,jdbcType=VARCHAR},
+      ncreatetime = #{ncreatetime,jdbcType=TIMESTAMP},
+      lastchapter = #{lastchapter,jdbcType=INTEGER}
+    where nid = #{nid,jdbcType=VARCHAR}
+  </update>
+</mapper>

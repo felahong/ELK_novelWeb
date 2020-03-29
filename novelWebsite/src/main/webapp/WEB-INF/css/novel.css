@@ -1,0 +1,213 @@
+#novel_center {
+	width: 80%;
+	margin: 0 auto;
+}
+
+#novel_center .top_content{
+	width: 100%;
+	height: 400px;
+	display: block;
+	margin: 0 auto;
+	margin-top: 10px;
+}
+
+#novel_center .top_content .ancient_rank{
+	float: left;
+	padding: 10px;
+	border: 1px solid #e9eaec;
+}
+
+.novel_type{/*小说类型*/
+	height: 30px;
+	font-size: 16px;
+	font-style: normal;
+}
+
+#novel_center .card-item{
+	padding: 5px 0px;
+	overflow: hidden;
+}
+#novel_center ul li{
+	list-style: none;
+	/*border-bottom: 1px dashed #ccc;*/
+}
+
+#novel_center ul li:nth-child(-n+3) span{
+	background: lightcoral;
+}
+
+#novel_center ul li span{
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	background: #ccc;
+	text-align: center;
+	line-height: 20px;
+	margin-right: 10px;
+	float: left;
+}
+
+#novel_center .novel_name{
+	font-size: 14px;
+	color: #000000;
+	float:left;
+}
+#novel_center .author_name{
+	/*width: 20%;*/
+	font-size: 14px;
+	color: #000000;
+	float:right;
+}
+
+.content{
+	overflow: hidden;//字体大小超过框内大小，清除浮动
+//overflow要写在margin之前
+margin-top: 5px;
+	float: right;
+	display: none;
+}
+.current .content{
+	display:block;
+}
+.content>img{
+	width: 60px;
+	height: 90px;
+}
+
+.content>p{
+	width: 160px;
+	height: 90px;
+	float: right;
+	font-size: 12px;
+	line-height: 20px;
+	margin-left: 10px;
+}
+
+#novel_center .more{
+	float: right;
+	font-size: 13px;
+	color: #DDA0DD;
+	padding-right: 5px;
+}
+
+#novel_center .top_content .t_centent {
+	float: left;
+}
+
+#novel_center .top_content .t_centent .t_c_box{
+	margin: 0 auto;
+}
+
+#novel_center .top_content .t_centent .t_c_box .t_new_img{
+	width: 100%;
+	height: 155px;
+}
+
+#novel_center .top_content .t_centent .t_hot_novel{
+	width: 100%;
+	height: 236px;
+	margin: 0 auto;
+	padding: 2%;
+	border: 1px solid #e9eaec;
+}
+
+#novel_center .top_content .t_centent .t_hot_novel .b_top_box {
+	height: 15%;
+	display: block;
+}
+
+#novel_center .top_content .t_centent .t_hot_novel .b_top_box .novel_type{
+	float: left;
+	height: 30px;
+}
+
+#novel_center .top_content .t_centent .t_hot_novel .ul_list{
+	width: 100%;
+	height: 85%;
+}
+
+#novel_center .top_content .t_centent .t_hot_novel .ul_list ul li{
+	height: 20px;
+	margin-bottom: 2%;
+	overflow: hidden;
+}
+
+#novel_center .top_content .t_centent .t_hot_novel  ul li p{
+	/*overflow: hidden;*/
+	color: #00A7DE;
+	float: right;
+}
+#novel_center .top_content .t_centent .t_hot_novel  .author_name{
+	float: none;
+	margin-left: 5px;
+}
+
+#novel_center .top_content .morden_rank{
+	/*float: left;*/
+	padding: 10px;
+	border: 1px solid #e9eaec;
+	margin: 0 auto;
+}
+
+#novel_center .center_content{
+	width: 100%;
+	height: 170px;
+	padding: 10px;
+	border: 1px solid #e9eaec;
+	background: #ffffff;
+	border-radius: 5px;
+}
+
+#novel_center .center_content ul{
+	width: 100%;
+	height: 120px;
+	overflow: auto;
+	white-space:nowrap;  /* ul中的内容不换行 */
+}
+
+#novel_center .center_content ul li {
+	width: 200px;
+	display: inline-block;
+}
+#novel_center .center_content ul li img{
+	width: 35%;
+	height: 100px;
+}
+#novel_center .button_content{
+	width: 100%;
+	height: 400px;
+	display: block;
+	margin: 0 auto;
+	margin-top: 10px;
+}
+#novel_center .button_content .b_new_book{
+	padding: 10px;
+	float: left;
+	border-color: #e9eaec;
+	border: 1px solid #dddee1;
+}
+
+#novel_center .button_content .b_re_left{
+	float: left;
+	padding: 10px;
+	border: 1px solid #dddee1;
+	border-color: #e9eaec;
+}
+
+#novel_center .button_content .b_re_center{
+	float: left;
+	padding: 10px;
+	border: 1px solid #dddee1;
+	border-color: #e9eaec;
+}
+#novel_center .button_content .b_re_right{
+	float: left;
+	padding: 10px;
+	border: 1px solid #dddee1;
+	border-color: #e9eaec;
+}
+
+.n_box{
+	width: 100%;
+	height: 320px;
+}

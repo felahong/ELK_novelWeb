@@ -1,0 +1,22 @@
+#footer{
+	width: 80%;	
+	margin: 20px auto;
+	text-align: center;
+}
+
+#footer .end{
+	text-align: center;
+}
+
+#footer .end a{
+	
+	text-decoration: none;
+	color: #666;
+	margin-left: 5px;
+	margin-right: 5px;
+
+}
+
+#footer p{
+	font-size: 13px;
+}

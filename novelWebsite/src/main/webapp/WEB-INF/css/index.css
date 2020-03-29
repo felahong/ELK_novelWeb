@@ -1,0 +1,220 @@
+#center{
+	width: 80%;
+	margin: 0 auto;
+	margin-top: 10px;
+}
+
+#center .c_top{
+	width: 100%;
+	height: 440px;
+	/*background: palegreen;/*颜色*/
+}
+
+#center .c_top .big_photo{
+	width: 60%;
+	height: 440px;
+	float: left;
+	margin-right: 3%;
+}
+#center .c_top .big_photo img{
+	border: 2px solid #fff;
+	border-radius: 4px;
+	width: 100%;
+	height: 436px;
+	position: relative;
+}
+
+#center .c_top .small_photo{
+	/*background: #CC0031;测试*/
+	width:35%;
+	height: 440px;
+	float:left;
+}
+
+#center .c_top .small_photo img{
+	width: 100%;
+	height: 200px;
+	float:left;
+	border: 2px solid #fff;
+	border-radius: 4px;
+}
+
+#center .c_top .small_photo img:first-child{
+	margin-bottom: 32px;
+}
+
+#center .c_title{
+	width :100%;
+	height: 544px;
+	/*background: black;/*颜色*/
+}
+
+#center .h3_word{
+	line-height: 44px;
+	font-size: 20px;
+	color:#DB7093;
+	border-bottom: 1px solid #ccc;
+	display: block;
+}
+
+#center .c_title ul{
+	list-style: none;
+	overflow: hidden;/*清除浮动，多行*/
+	width: 100%;
+	height:500px;
+	/*background: #003399;*/
+}
+
+#center .c_title ul li{
+	width: 22%;
+	height: 240px;
+	float: left;
+	margin-right:  3%;
+	margin-bottom: 5px;
+}
+
+#center .c_title ul li:nth-child(4n){
+	margin-right: 0px;
+}
+
+#center .c_title ul li img{
+	width: 100%;
+	height: 220px;
+	display: block;/*成为块级元素,margin有效果*/
+	margin: 0 auto;
+	margin-top: 10px;
+	border: 2px solid #fff;
+	border-radius: 4px;
+}
+
+#center .c_novel{
+	width :100%;
+	height: 484px;
+	display: block;
+	/*background: orange;/*颜色*/
+}
+
+#center .c_novel .c_novel_ul{
+	width: 60%;
+	height: 440px;
+	float: left;
+}
+
+#center .c_novel .c_novel_ul ul li{
+	width: 29%;
+	height: 200px;
+	float: left;
+	margin-right:  5%;
+	margin-bottom: 5px;
+	padding: 5px;
+}
+
+#center .c_novel .c_novel_ul ul li:nth-child(3n){
+	margin-right: 0px;
+}
+
+#center .c_novel .c_novel_ul ul li img{
+	width: 100%;
+	height: 200px;
+	display: block;/*成为块级元素,margin有效果*/
+	margin: 0 auto;
+	margin-top: 10px;
+	border: 2px solid #fff;
+	border-radius: 4px;
+}
+
+#center .c_novel .c_novel_rank{
+	padding-top:10px;
+	width: 35%;
+	height: 420px;
+	float: right;
+	/*background: orchid;*/
+	background-image:url(../img/rank1.png);
+	display: block;
+}
+#center .c_novel .c_novel_rank ul {
+	padding-left:70px;
+	padding-top: 20px;
+}
+
+#center .c_novel .c_novel_rank ul li{
+	font-size: 20px;
+	color: #DB7093;
+}
+
+#center .c_video{
+	width :100%;
+	height: 464px;
+	display: block;
+	margin: 0 auto;
+	/*background-color: #0381AA;*/
+}
+
+#center .c_video .h3_word{
+	width: 100%;
+	height: 44px;
+	float: left;
+}
+
+#center .c_video ul{
+	width: 100%;
+	list-style: none;
+	overflow: hidden;/*清除浮动，多行*/
+}
+
+#center .c_video ul li{
+	width: 22%;
+	height: 200px;
+	float: left;
+	margin-right:  3%;
+	margin-bottom: 5px;
+}
+
+#center .c_video ul li:nth-child(4n){
+	margin-right: 0px;
+}
+
+#center .c_video ul li img{
+	width: 100%;
+	height: 180px;
+	display: block;/*成为块级元素,margin有效果*/
+	margin: 0 auto;
+	margin-top: 10px;
+	border: 2px solid #fff;
+	border-radius: 4px;
+}
+
+#center .c_surround{
+	width:100%;
+	height: 464px;
+	display: block;
+	/*background: blue;*/
+}
+
+#center .c_surround ul{
+	list-style: none;
+	overflow: hidden;/*清除浮动，多行*/
+}
+
+#center .c_surround ul li{
+	width: 22%;
+	height: 200px;
+	float: left;
+	margin-right:  3%;
+	margin-bottom: 5px;
+	padding: 5px;
+}
+
+#center .c_surround ul li:nth-child(4n){
+	margin-right: 0px;
+}
+
+#center .c_surround ul li img{
+	width: 100%;
+	height: 180px;
+	display: block;/*成为块级元素,margin有效果*/
+	margin: 0 auto;
+	margin-top: 10px;
+	border: 2px solid #fff;
+	border-radius: 4px;
+}

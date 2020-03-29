@@ -1,0 +1,26 @@
+body {
+    width: 100%;
+}
+#center {
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 5px;
+}
+.c_left {
+    width: 20%;
+    height: 640px;
+    float: left;
+    border: 1px solid #e5e5e5;
+}
+
+.c_left li{
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.c_left  li a {
+    color: #555555;
+    font-family: '微软雅黑';
+    font-size: 20px;
+    background: #fff;
+    text-align: center;
+}

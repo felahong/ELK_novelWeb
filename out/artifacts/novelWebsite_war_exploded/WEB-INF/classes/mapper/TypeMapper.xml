@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sif.mapper.TypeMapper">
+    <sql id="Base_Column_List">
+        tid,tname
+    </sql>
+    <select id="selectAllType" resultType="Type">
+        select
+        <include refid="Base_Column_List" />
+        from type
+    </select>
+</mapper>

@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sif.mapper.ChapterMapper">
+  <resultMap id="BaseResultMap" type="com.sif.pojo.Chapter">
+    <id column="cid" jdbcType="INTEGER" property="cid" />
+    <result column="nid" jdbcType="VARCHAR" property="nid" />
+    <result column="chapterid" jdbcType="INTEGER" property="chapterid" />
+    <result column="chaptername" jdbcType="VARCHAR" property="chaptername" />
+    <result column="clocation" jdbcType="VARCHAR" property="clocation" />
+    <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    cid, nid, chapterid, chaptername, clocation, createtime
+  </sql>
+
+  <!--删除章节by 小说编号-->
+  <!--void deleteAllChapterByNid(String nid);-->
+  <delete id="deleteAllChapterByNid" parameterType="java.lang.String">
+      delete from chapter
+      where nid = #{nid,jdbcType=VARCHAR}
+  </delete>
+
+  <!--/*  根据小说的id查找章节*/-->
+  <!--List<Chapter> selectChapterByNid(String nid);-->
+  <select id="selectChapterByNid" parameterType="java.lang.String" resultType="com.sif.pojo.Chapter">
+    SELECT
+    <include refid="Base_Column_List" />
+    from chapter WHERE nid = #{nid,jdbcType=VARCHAR}
+  </select>
+
+  <!--/*查找一个章节*/-->
+  <!--Chapter selectChapterByChapter(String nid, String lastchapter);-->
+  <select id="selectChapterByChapter" resultType="com.sif.pojo.Chapter">
+    select
+    <include refid="Base_Column_List" />
+    FROM chapter WHERE nid = #{nid,jdbcType=VARCHAR} and chapterid = #{chapterid,jdbcType=INTEGER}
+  </select>
+
+  <select id="selectByExample" parameterType="com.sif.pojo.ChapterExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from chapter
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from chapter
+    where cid = #{cid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from chapter
+    where cid = #{cid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.sif.pojo.ChapterExample">
+    delete from chapter
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.sif.pojo.Chapter">
+    insert into chapter (nid, chapterid,
+      chaptername, clocation, createtime
+      )
+    values (#{nid,jdbcType=VARCHAR}, #{chapterid,jdbcType=INTEGER},
+      #{chaptername,jdbcType=VARCHAR}, #{clocation,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.sif.pojo.Chapter">
+    insert into chapter
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="cid != null">
+        cid,
+      </if>
+      <if test="nid != null">
+        nid,
+      </if>
+      <if test="chapterid != null">
+        chapterid,
+      </if>
+      <if test="chaptername != null">
+        chaptername,
+      </if>
+      <if test="clocation != null">
+        clocation,
+      </if>
+      <if test="createtime != null">
+        createtime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="cid != null">
+        #{cid,jdbcType=INTEGER},
+      </if>
+      <if test="nid != null">
+        #{nid,jdbcType=VARCHAR},
+      </if>
+      <if test="chapterid != null">
+        #{chapterid,jdbcType=INTEGER},
+      </if>
+      <if test="chaptername != null">
+        #{chaptername,jdbcType=VARCHAR},
+      </if>
+      <if test="clocation != null">
+        #{clocation,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.sif.pojo.ChapterExample" resultType="java.lang.Long">
+    select count(*) from chapter
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update chapter
+    <set>
+      <if test="record.cid != null">
+        cid = #{record.cid,jdbcType=INTEGER},
+      </if>
+      <if test="record.nid != null">
+        nid = #{record.nid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.chapterid != null">
+        chapterid = #{record.chapterid,jdbcType=INTEGER},
+      </if>
+      <if test="record.chaptername != null">
+        chaptername = #{record.chaptername,jdbcType=VARCHAR},
+      </if>
+      <if test="record.clocation != null">
+        clocation = #{record.clocation,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createtime != null">
+        createtime = #{record.createtime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update chapter
+    set cid = #{record.cid,jdbcType=INTEGER},
+      nid = #{record.nid,jdbcType=VARCHAR},
+      chapterid = #{record.chapterid,jdbcType=INTEGER},
+      chaptername = #{record.chaptername,jdbcType=VARCHAR},
+      clocation = #{record.clocation,jdbcType=VARCHAR},
+      createtime = #{record.createtime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sif.pojo.Chapter">
+    update chapter
+    <set>
+      <if test="nid != null">
+        nid = #{nid,jdbcType=VARCHAR},
+      </if>
+      <if test="chapterid != null">
+        chapterid = #{chapterid,jdbcType=INTEGER},
+      </if>
+      <if test="chaptername != null">
+        chaptername = #{chaptername,jdbcType=VARCHAR},
+      </if>
+      <if test="clocation != null">
+        clocation = #{clocation,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        createtime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where cid = #{cid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sif.pojo.Chapter">
+    update chapter
+    set nid = #{nid,jdbcType=VARCHAR},
+      chapterid = #{chapterid,jdbcType=INTEGER},
+      chaptername = #{chaptername,jdbcType=VARCHAR},
+      clocation = #{clocation,jdbcType=VARCHAR},
+      createtime = #{createtime,jdbcType=TIMESTAMP}
+    where cid = #{cid,jdbcType=INTEGER}
+  </update>
+</mapper>

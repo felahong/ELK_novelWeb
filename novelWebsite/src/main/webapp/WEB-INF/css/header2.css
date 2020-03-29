@@ -1,0 +1,46 @@
+body {
+    width: 100%;
+}
+#header {
+    width: 80%;
+    height: 64px;
+    display: block;
+    border-bottom: #A5A5A5 1px solid;
+    margin: 0 auto;
+    margin-top: 6px;
+}
+#header .h_left {
+    width: 20%;
+    height: 64px;
+    float: left;
+}
+#header .h_center {
+    width: 60%;
+    height: 64px;
+    float: left;
+}
+#header .h_center ul {
+    width: 50%;
+    height: 64px;
+}
+
+#header .h_center li {
+    width: 25%;
+    height: 64px;
+    text-align: center;
+    float: left;
+    line-height: 64px;
+}
+
+#header .h_center li a {
+    color: #DB7093;
+    font-size: 18px;
+
+}
+
+#header .h_right {
+    width: 20%;
+    height: 64px;
+    float: right;
+    line-height: 64px;
+}
