@@ -17,6 +17,6 @@
 
 # 作品展示
 
-
-
+![搜索模块](search.png)
+![数据分析及可视化](dataVisual.png)
 
